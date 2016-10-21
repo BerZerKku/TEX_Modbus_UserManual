@@ -1,0 +1,442 @@
+% при использовании \setcounter{..} происходит сдвиг правой границы таблицы
+% для того чтобы избежать этого, "\\ \hline" надо писать после него без пробелов
+\newcounter{adr}
+\newcommand{\cntadr}{%
+\arabic{adr}\stepcounter{adr}%
+}
+
+
+
+\begin{tabularx}{\linewidth}{|M{1.2cm}|X|M{1.7cm}|M{1.7cm}|M{1.7cm}|M{1.7cm}|}	
+	\caption{Таблица регистров Словаря объектов приемопередатчика} \label{tab:map_register} \\
+	
+	\hline
+    Адрес	& \calign{Название и~описание параметра}	
+    										& Масш.		& Мин.		& Макс.		& Доступ	\\ \hline
+    \endfirsthead
+    
+    \multicolumn{6}{r}{продолжение следует\ldots} \\
+    \endfoot
+	\endlastfoot
+	
+	\multicolumn{6}{l}{Продолжение таблицы \ref{tab:map_register}} \\ \hline 	
+	Адрес	&  \calign{Название и~описание параметра} 	
+											& Масш.		& Мин.		& Макс.		& Доступ	\\ \hline
+	\endhead
+	
+	\multicolumn{6}{|c|}{Дата и~время}									\setcounter{adr}{01}\\ \hline																	
+	\cntadr	& Год 							& 1~год 	& 0 		& 99 		& чт./зап.	\\ \hline
+	\cntadr & Месяц 						& 1~мес 	& 1 		& 12 		& чт./зап.	\\ \hline
+    \cntadr	& День 							& 1~день	& 1 		& 31 		& чт./зап.	\\ \hline
+    \cntadr	& Часы 							& 1~час 	& 0 		& 23 		& чт./зап.	\\ \hline
+    \cntadr	& Минуты 						& 1~мин 	& 0 		& 59 		& чт./зап.	\\ \hline
+    \cntadr	& Секунды					 	& 1~сек 	& 0 		& 59 		& чт./зап.	\\ \hline
+    \multicolumn{6}{|c|}{Пароль}										\setcounter{adr}{07}\\ \hline
+    \cntadr	& Пароль						&			& 0			& 9999		& зап.		\\ \hline 
+    \cntadr	& Новый пароль					&			& 0			& 9999		& зап.		\\ \hline
+    \multicolumn{6}{|c|}{Текущее состояние приемопередатчика}			\setcounter{adr}{10}\\ \hline
+    10		& Код неисправности Общий 		& ---		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+    11		& Код предупреждения Общий 		& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+\ifCommand
+    12 		& Код неисправности Приемника 	& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+    13 		& Код предупреждения Приемника 	& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+    14 		& Режим работы Приемника 		& 1 		& 0 		& 5 		& чт./зап.	\\ \hline
+    15 		& Состояние Приемника 			& 1 		& 0 		& 12 		& чт.		\\ \hline
+    16 		& Доп.~байт Приемника 			& 1 		& 0 		& 32 		& чт.		\\ \hline
+    17 		& Код неисправности Передатчика & --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+    18 		& Код предупрежд. Передатчика 	& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+    19 		& Режим работы Передатчика 		& 1 		& 0 		& 5 		& чт./зап.	\\ \hline
+    20 		& Состояние Передатчика 		& 1 		& 0 		& 12 		& чт.		\\ \hline
+	21 		& Доп.~байт Передатчика 		& 1 		& 0 		& 32 		& чт.		\\ \hline
+\fi
+\ifDefense
+	22 		& Код неисправности Защиты		& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+	23 		& Код предупрежд. Защиты 		& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+    24 		& Режим работы Защиты 			& 1 		& 0 		& 5 		& чт./зап.	\\ \hline
+    25 		& Состояние Защиты 				& 1 		& 0 		& 12 		& чт.		\\ \hline
+\fi
+    \multicolumn{6}{|c|}{Журнал событий}								\setcounter{adr}{27}\\ \hline
+    \cntadr	& Количество записей сделанных с~момента включения аппарата 
+    										& 1 		& 0 		& 65535 	& чт.		\\ \hline
+    \cntadr	& Количество записей в журнале 	& 1 		& 0 		& 512 		& чт.		\\ \hline
+    \cntadr	& Номер текущей записи журнала 	& 1 		& 0 		& 512 		& чт./зап.	\\ \hline
+    \cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+    \cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+    \cntadr	& Имя устройства 				& 1 		& 1 		& 5 		& чт.		\\ \hline
+    \cntadr	& Тип события 					& 1 		& 1 		& 32 		& чт.		\\ \hline
+    \cntadr	& Режим работы 					& 1 		& 0 		& 5 		& чт.		\\ \hline
+    \cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+    \cntadr	& Резерв						& --- 		& --- 		& --- 		& ---		\\ \hline
+    \cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+    \cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+   	\cntadr	& Миллисекунды 					& 1~мс 		& 0 		& 999 		& чт.		\\ \hline
+   	\cntadr	& Секунды 						& 1~сек 	& 0 		& 59 		& чт.		\\ \hline
+   	\cntadr	& Минуты 						& 1~мин 	& 0 		& 59 		& чт.		\\ \hline
+   	\cntadr	& Часы 							& 1~час 	& 0 		& 23 		& чт.   	\\ \hline
+ 	\cntadr	& День недели 					& 1 		& 1 		& 7 		& чт.		\\ \hline
+ 	\cntadr	& День 							& 1~день 	& 1 		& 31 		& чт.		\\ \hline
+ 	\cntadr	& Месяц 						& 1~мес 	& 1 		& 12 		& чт.		\\ \hline
+ 	\cntadr	& Год 							& 1~год 	& 0 		& 99 		& чт.		\\ \hline 	
+\ifCommand
+ 	\multicolumn{6}{|c|}{Журнал Приемника}								\setcounter{adr}{50}\\ \hline
+ 	\cntadr	& Количество записей сделанных с~момента включения аппарата 
+ 											& 1 		& 0 		& 65535 	& чт.		\\ \hline
+ 	\cntadr	& Количество записей в~журнале 	& 1 		& 0 		& 512 		& чт.		\\ \hline
+ 	\cntadr	& Номер текущей записи журнала 	& 1 		& 0 		& 512 		& чт./зап.	\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr	& Имя устройства 				& 1 		& 1 		& 5 		& чт.		\\ \hline
+ 	\cntadr	& Номер команды 				& 1 		& 0 		& 32 		& чт.		\\ \hline
+ 	\cntadr	& Событие 						& 1 		& 0 		& 1 		& чт.		\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr	& Резерв						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr	& Миллисекунды 					& 1~мс 		& 0 		& 999 		& чт.		\\ \hline
+ 	\cntadr	& Секунды 						& 1~сек 	& 0 		& 59 		& чт.		\\ \hline
+ 	\cntadr	& Минуты 						& 1~мин 	& 0 		& 59 		& чт.		\\ \hline
+ 	\cntadr	& Часы 							& 1~час 	& 0 		& 23 		& чт.   	\\ \hline
+ 	\cntadr	& День недели 					& 1 		& 1 		& 7 		& чт.		\\ \hline
+ 	\cntadr	& День 							& 1~день 	& 1 		& 31 		& чт.		\\ \hline
+ 	\cntadr	& Месяц 						& 1~мес 	& 1 		& 12 		& чт.		\\ \hline
+ 	\cntadr	& Год 							& 1~год 	& 0 		& 99 		& чт.		\\ \hline
+\fi
+\ifCommand 	
+	\multicolumn{6}{|c|}{Журнал Передатчика}							\setcounter{adr}{74}\\ \hline
+	\cntadr	& Количество записей сделанных с~момента включения аппарата 
+ 											& 1 		& 0 		& 65535 	& чт.		\\ \hline
+ 	\cntadr	& Количество записей в~журнале 	& 1 		& 0 		& 512 		& чт.		\\ \hline
+ 	\cntadr	& Номер текущей записи журнала 	& 1 		& 0 		& 512 		& чт./зап.	\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Имя устройства 				& 1 		& 1 		& 5 		& чт.		\\ \hline
+ 	\cntadr	& Номер команды 				& 1 		& 0 		& 32 		& чт.		\\ \hline
+ 	\cntadr	& Событие 						& 1 		& 0 		& 1 		& чт.		\\ \hline
+ 	\cntadr	& Источник команды				& 1 		& 0 		& 1 		& чт.		\\ \hline
+ 	\cntadr & Резерв						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Миллисекунды 					& 1~мс 		& 0 		& 999 		& чт.		\\ \hline
+ 	\cntadr	& Секунды 						& 1~сек 	& 0 		& 59 		& чт.		\\ \hline
+ 	\cntadr	& Минуты 						& 1~мин 	& 0 		& 59 		& чт.		\\ \hline
+ 	\cntadr	& Часы 							& 1~час 	& 0 		& 23 		& чт.   	\\ \hline
+ 	\cntadr	& День недели 					& 1 		& 1 		& 7 		& чт.		\\ \hline
+ 	\cntadr	& День 							& 1~день 	& 1 		& 31 		& чт.		\\ \hline
+ 	\cntadr	& Месяц 						& 1~мес 	& 1 		& 12 		& чт.		\\ \hline
+ 	\cntadr	& Год 							& 1~год 	& 0 		& 99 		& чт.		\\ \hline 		
+\fi		
+\ifDefense
+	\multicolumn{6}{|c|}{Журнал Защиты}									\setcounter{adr}{98}\\ \hline
+	\cntadr	& Количество записей сделанных с~момента включения аппарата 
+ 											& 1 		& 0 		& 65535 	& чт.		\\ \hline
+ 	\cntadr	& Количество записей в~журнале 	& 1 		& 0 		& 512 		& чт.		\\ \hline
+ 	\cntadr	& Номер текущей записи журнала 	& 1 		& 0 		& 512 		& чт./зап.	\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Имя устройства 				& 1 		& 1 		& 5 		& чт.		\\ \hline
+ 	\cntadr	& Состояние сигналов			& 1 		& 0x0000 	& 0x7FFF	& чт.		\\ \hline
+ 	\cntadr	& Состояние						& 1 		& 0 		& 12 		& чт.		\\ \hline
+ 	\cntadr	& Резерв						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Резерв						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr	& Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Резерв 						& --- 		& --- 		& --- 		& ---		\\ \hline
+ 	\cntadr & Миллисекунды 					& 1~мс 		& 0 		& 999 		& чт.		\\ \hline
+ 	\cntadr	& Секунды 						& 1~сек 	& 0 		& 59 		& чт.		\\ \hline
+ 	\cntadr	& Минуты 						& 1~мин 	& 0 		& 59 		& чт.		\\ \hline
+ 	\cntadr	& Часы 							& 1~час 	& 0 		& 23 		& чт.   	\\ \hline
+ 	\cntadr	& День недели 					& 1 		& 1 		& 7 		& чт.		\\ \hline
+ 	\cntadr	& День 							& 1~день 	& 1 		& 31 		& чт.		\\ \hline
+ 	\cntadr	& Месяц 						& 1~мес 	& 1 		& 12 		& чт.		\\ \hline
+ 	\cntadr	& Год 							& 1~год 	& 0 		& 99 		& чт.		\\ \hline 		
+\fi				
+	\multicolumn{6}{|c|}{Текущие измерения} 							\setcounter{adr}{123}\\ \hline
+ 	123 	& Выходное напряжение 			& 0,1~В 	& 0 		& 999 		& чт.		\\ \hline
+ 	124 	& Выходной ток 					& 1~мА 		& 0 		& 999 		& чт.		\\ \hline
+ 	125 	& Запас по~затуханию для первого приемника сигналов команд 
+ 											& 1~дБ 		& -99 		& 99 		& чт.		\\ \hline
+ 	126 	& Запас по~затуханию для второго приемника сигналов команд 
+ 											& 1~дБ 		& -99 		& 99 		& чт.		\\ \hline
+ 	127 	& Уровень принимаемого сигнала в~рабочей полосе частот первого приемника относительно чувствительности 
+ 											& 1~дБ 		& -99 		& 99 		& чт.		\\ \hline
+ 	128 	& Уровень принимаемого сигнала в~рабочей полосе частот второго приемника относительно чувствительности 
+ 											& 1~дБ 		& -99 		& 99 		& чт.		\\ \hline
+\ifDefense
+ 	129 	& Запас по~затуханию для первого приемника сигналов ВЧ защит 
+ 											& 1~дБ 		& -99 		& 99 		& чт.		\\ \hline
+ 	130 	& Запас по~затуханию для второго приемника сигналов ВЧ защит 
+ 											& 1~дБ 		& -99 		& 99 		& чт.		\\ \hline
+ 	131 	& Длительность импульсов ВЧ блокировки на~выходе приемника 
+ 											& 1~град 	& 0 		& 360 		& чт.		\\ \hline
+\fi
+\ifCommand
+ 	\multicolumn{6}{|c|}{Индикация команд}								\setcounter{adr}{140}\\ \hline
+ 	140		& Индикация команд приемника №1-16		
+ 											& --- 		& 0x0000	& 0xFFFF	& чт./зап.	\\ \hline
+\ifx \deviceCurrent \deviceK % только в К400 может быть больше 8 команд
+ 	141		& Индикация команд приемника №17-32		
+ 											& ---		& 0x0000	& 0xFFFF	& чт./зап.  \\ \hline
+\fi % \if \deviceCurrent \deviceK
+ 	142		& Индикация команд передатчика №1-16	
+ 											& ---		& 0x0000	& 0xFFFF	& чт./зап.  \\ \hline
+\ifx \deviceCurrent \deviceK % только в К400 может быть больше 8 команд
+ 	143		& Индикация команд передатчика №17-32	
+ 											& ---		& 0x0000	& 0xFFFF	& чт./зап.	\\ \hline
+\fi % \if \deviceCurrent \deviceK
+\fi					
+ 	\multicolumn{6}{|c|}{Версии прошивок микросхем}						\setcounter{adr}{156}\\ \hline
+ 	156 	& БСП MCU 						& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+ 	157 	& БСП DSP 						& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+ 	158 	& ПИ MCU 						& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+\ifCommand
+ 	159 	& БСК ПРД1 						& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline	
+ 	160 	& БСК ПРМ1 						& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+ 	161 	& БСК ПРД2 						& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+ 	162 	& БСК ПРМ2 						& --- 		& 0x0000 	& 0xFFFF 	& чт.		\\ \hline
+\fi
+\ifDefense
+	163		& БСЗ 							& ---		& 0x0000	& 0xFFFF	& чт.		\\ \hline
+\fi
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{|M{1.2cm}|X|M{1.7cm}|}	
+	\caption{Таблица битовых флагов Словаря объектов приемопередатчика} \label{tab:map_flags} \\
+	
+	\hline
+	Адрес	& \calign{Название и~описание параметра}	& Доступ	\\ \hline
+	\endfirsthead
+	
+	\multicolumn{3}{r}{продолжение следует\ldots} \\
+	\endfoot
+	\endlastfoot
+	
+	\multicolumn{3}{l}{Продолжение таблицы \ref{tab:map_flags}} 	\\ \hline 
+	Адрес	& \calign{Название и~описание параметра}	& Доступ	\\ \hline
+	\endhead
+	
+	\multicolumn{3}{|c|}{Флаги текущего состояния} 		\setcounter{adr}{201}\\ \hline
+	201 	& Неисправность 							&  чт. 		\\ \hline
+	202 	& Предупреждение 							&  чт.		\\ \hline
+\ifCommand
+	203		& Индикация команд передатчика				&  чт./зап.	\\ \hline
+	204 	& Индикация команд приемника 				&  чт./зап.	\\ \hline 
+\fi
+			&											&			\\ \hline
+	\multicolumn{3}{|c|}{Флаги неисправностей общих}	\setcounter{adr}{301}\\ \hline
+	\cntadr	& \deviceGlobalErrorI						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorIII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorIV						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorV						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorVI						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorVII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorVIII					& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorIX						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorX						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorXI						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorXII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorXIII					& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorXIV 					& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorXV 						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalErrorXVI 					& чт.		\\ \hline
+	\multicolumn{3}{|c|}{Флаги предупреждений общих} \setcounter{adr}{317}\\ \hline
+	\cntadr	& \deviceGlobalWarnI						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnIII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnIV						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnV						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnVI						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnVII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnVIII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnIX						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnX						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnXI						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnXII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnXIII						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnXIV 						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnXV 						& чт.		\\ \hline
+	\cntadr	& \deviceGlobalWarnXVI 						& чт.		\\ \hline	
+\ifCommand
+			&											&			\\ \hline	
+	400		& Передатчик подключен						& чт.		\\ \hline
+	\multicolumn{3}{|c|}{Флаги неисправностей Передатчика}\setcounter{adr}{401}\\ \hline	
+	\cntadr	& \devicePrdErrorI							& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorII							& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorIII						& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorIV							& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorV							& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorVI							& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorVII						& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorVIII						& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorIX							& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorX							& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorXI							& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorXII						& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorXIII						& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorXIV 						& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorXV 						& чт.		\\ \hline
+	\cntadr	& \devicePrdErrorXVI 						& чт.		\\ \hline	
+	\multicolumn{3}{|c|}{Флаги предупреждений Передатчика}\setcounter{adr}{417}\\ \hline
+	\cntadr	& \devicePrdWarnI							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnII							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnIII							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnIV							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnV							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnVI							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnVII							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnVIII						& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnIX							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnX							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnXI							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnXII							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnXIII						& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnXIV 						& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnXV 							& чт.		\\ \hline
+	\cntadr	& \devicePrdWarnXVI 						& чт.		\\ \hline
+	\multicolumn{3}{|c|}{Флаги индикации команд Передатчика}\setcounter{adr}{450}\\ \hline
+	\cntadr	& Индикация команды передатчика №1  		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №2  		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №3  		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №4  		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №5  		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №6  		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №7  		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №8  		& чт.		\\ \hline
+\ifx \deviceCurrent \deviceK % только в К400 может быть больше 8 команд
+	\cntadr	& Индикация команды передатчика №9  		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №10 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №11 		& чт.		\\ \hline	
+	\cntadr	& Индикация команды передатчика №12 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №13 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №14 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №15 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №16 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №17 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №18 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №19 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №20 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №21 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №22 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №23 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №24 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №25 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №26 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №27 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №28 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №29 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №30 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №31 		& чт.		\\ \hline
+	\cntadr	& Индикация команды передатчика №32 		& чт.		\\ \hline
+\fi % \ifx \deviceCurrent \deviceK 	
+\fi % \ifCommand
+\ifCommand
+			&											&			\\ \hline
+	500		& Приемник подключен						& чт.		\\ \hline
+	\multicolumn{3}{|c|}{Флаги неисправностей Приемника}\setcounter{adr}{501}\\ \hline
+	\cntadr	& \devicePrmErrorI							& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorII							& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorIII						& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorIV							& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorV							& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorVI							& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorVII						& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorVIII						& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorIX							& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorX							& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorXI							& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorXII						& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorXIII						& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorXIV 						& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorXV 						& чт.		\\ \hline
+	\cntadr	& \devicePrmErrorXVI 						& чт.		\\ \hline		
+	\multicolumn{3}{|c|}{Флаги предупреждений Приемника}\setcounter{adr}{517}\\ \hline	
+	\cntadr	& \devicePrmWarnI							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnII							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnIII							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnIV							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnV							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnVI							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnVII							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnVIII						& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnIX							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnX							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnXI							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnXII							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnXIII						& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnXIV 						& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnXV 							& чт.		\\ \hline
+	\cntadr	& \devicePrmWarnXVI 						& чт.		\\ \hline
+	\multicolumn{3}{|c|}{Флаги неисправностей Приемника}\setcounter{adr}{550}\\ \hline
+	\cntadr	& Индикация команды приемника №1  			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №2  			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №3  			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №4  			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №5  			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №6  			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №7  			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №8  			& чт.		\\ \hline
+\ifx \deviceCurrent \deviceK % в К400 может быть больше 8 команд
+	\cntadr	& Индикация команды приемника №9  			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №10 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №11 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №12 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №13 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №14 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №15 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №16 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №17 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №18 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №19 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №20 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №21 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №22 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №23 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №24 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №25 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №26 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №27 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №28 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №29 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №30 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №31 			& чт.		\\ \hline
+	\cntadr	& Индикация команды приемника №32 			& чт.		\\ \hline
+\fi % \ifx \deviceCurrent \deviceK 	
+\fi % \ifCommand
+\ifDefense
+			&											&			\\ \hline
+	500		& Защита подключена							& чт.		\\ \hline
+	\multicolumn{3}{|c|}{Флаги неисправностей Защиты} \setcounter{adr}{601}\\ \hline
+	\cntadr	& \deviceDefenseErrorI						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorII						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorIII					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorIV						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorV						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorVI						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorVII					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorVIII					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorIX						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorX						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorXI						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorXII					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorXIII					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorXIV 					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorXV 					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseErrorXVI 					& чт.		\\ \hline	
+	\multicolumn{3}{|c|}{Флаги предупреждений Защиты} \setcounter{adr}{617}\\ \hline	
+	\cntadr	& \deviceDefenseWarnI						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnII						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnIII						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnIV						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnV						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnVI						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnVII						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnVIII					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnIX						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnX						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnXI						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnXII						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnXIII					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnXIV 					& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnXV 						& чт.		\\ \hline
+	\cntadr	& \deviceDefenseWarnXVI 					& чт.		\\ \hline	
+\fi % \ifDefense
+\end{tabularx}

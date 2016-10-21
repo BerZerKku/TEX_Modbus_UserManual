@@ -1,0 +1,68 @@
+\begin{tabularx}{\linewidth}{| M{1.5cm} | X | m{6cm} |}
+%	\caption{Значения параметров текущего состояния приемопередатчика} \label{tab:map_state} \\
+	\hline
+	Код & \centering Значение \arraybackslash & \centering Комментарий \arraybackslash \\ \hline
+	\endfirsthead
+	\multicolumn{3}{l}{Продолжение таблицы} \\ \hline 
+	Код	& \centering Значение \arraybackslash & \centering Комментарий \arraybackslash \\ \hline
+	\endhead
+	\multicolumn{3}{r}{продолжение следует\ldots} 
+	\endfoot
+	\endlastfoot
+	
+	\multicolumn{3}{|c|}{Режим работы} 									\\ \hline
+	0 		& Выведен							& 						\\ \hline
+	1 		& Готов 							& 						\\ \hline 
+	2 		& Введен 							& 						\\ \hline
+	3 		& Речь 								& 						\\ \hline
+	4 		& Тест 								& 						\\ \hline
+	5 		& Тест 								&						\\ \hline
+\ifCommand
+	\multicolumn{3}{|c|}{Состояние Приемника} 							\\ \hline
+	0 		& Исходное							& 						\\ \hline
+	1 		& Прием контрольной частоты 		& Номер в доп.байте		\\ \hline 
+	2 		& Прием команды ПА  				& Номер в доп.байте		\\ \hline
+	3 		& Нет КЧ							& 						\\ \hline
+	4 		& Неисправность 					& 						\\ \hline
+	5 		& Полная неисправность 				&						\\ \hline
+	6 		& Ожидание 							&						\\ \hline
+	7 		& Блокированная команда				& Номер в доп.байте		\\ \hline
+	8 		& Резерв			 				&						\\ \hline
+	9 		& Резерв 							&						\\ \hline
+	10 		& Речь 								&						\\ \hline
+	11 		& ПРД 								& Для режимов Тест		\\ \hline
+	12 		& ПРМ 								& Для режимов Тест		\\ \hline	
+\fi
+\ifCommand
+	\multicolumn{3}{|c|}{Состояние Передатчика}							\\ \hline
+	0 		& Исходное							& 						\\ \hline
+	1 		& Передача контрольной частоты 		& Номер в доп.байте		\\ \hline 
+	2 		& Передача команды ПА  				& Номер в доп.байте		\\ \hline
+	3 		& Нет КЧ							& 						\\ \hline
+	4 		& Неисправность 					& 						\\ \hline
+	5 		& Полная неисправность 				&						\\ \hline
+	6 		& Ожидание 							&						\\ \hline
+	7 		& Резерв							& 						\\ \hline
+	8 		& Передача команды ЦС 				& Номер в доп.байте		\\ \hline
+	9 		& Резерв 							&						\\ \hline
+	10 		& Речь 								&						\\ \hline
+	11 		& ПРД 								& Для режимов Тест		\\ \hline
+	12 		& ПРМ 								& Для режимов Тест		\\ \hline
+\fi
+\ifDefense
+	\multicolumn{3}{|c|}{Состояние Защиты}								\\ \hline
+	0 		& Исходное							& 						\\ \hline
+	1 		& Контроль 							& 						\\ \hline 
+	2 		& Пуск  							& 						\\ \hline
+	3 		& Останов							& 						\\ \hline
+	4 		& Неисправность 					& 						\\ \hline
+	5 		& Полная неисправность 				&						\\ \hline
+	6 		& Ожидание 							&						\\ \hline
+	7 		& Наладочный пуск					& 						\\ \hline
+	8 		& Удаленный пуск					& 						\\ \hline
+	9 		& Нет РЗ 							&						\\ \hline
+	10 		& Речь 								&						\\ \hline
+	11 		& ПРД 								& Для режимов Тест		\\ \hline
+	12 		& ПРМ 								& Для режимов Тест		\\ \hline
+\fi
+\end{tabularx}

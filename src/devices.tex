@@ -1,0 +1,349 @@
+% текущее устройство
+\def \deviceCurrent	{АВАНТ РЗСК}
+
+% возможные устройства
+\def \deviceK 		{АВАНТ К400}
+\def \deviceR		{АВАНТ Р400}
+\def \deviceRM		{АВАНТ Р400м}
+\def \deviceRZSK	{АВАНТ РЗСК}
+
+
+\newif\ifCommand % проверка наличия Команд
+\newif\ifDefense % првоерка наличия Защиты
+
+% формирование переменных для разных устройств 
+\ifx \deviceCurrent \deviceK  
+	\def \deviceDecimal {ПБКМ.424325.005 РЭ3} 
+	\def \deviceTitle	{ПРИЕМОПЕРЕДАТЧИК КОМАНД РЕЛЕЙНОЙ ЗАЩИТЫ И ПРОТИВОАВАРИЙНОЙ	АВТОМАТИКИ АВАНТ К400} 
+	\def \deviceOKP		{ОКП 66 5730}
+	\Commandtrue
+	\Defensefalse
+	% Неисправности общие
+	\def \deviceGlobalErrorI 	{Неисправность чтения FLASH}	% 0x0001
+	\def \deviceGlobalErrorII 	{Неисправность записи FLASH}	% 0x0002
+	\def \deviceGlobalErrorIII 	{Неисправность чтения PLIS}		% 0x0004
+	\def \deviceGlobalErrorIV	{Неисправность записи PLIS}		% 0x0008
+	\def \deviceGlobalErrorV	{Неисправность записи 2RAM}		% 0x0010
+	\def \deviceGlobalErrorVI	{Резерв}						% 0x0020
+	\def \deviceGlobalErrorVII	{Резерв}						% 0x0040
+	\def \deviceGlobalErrorVIII	{Резерв}						% 0x0080
+	\def \deviceGlobalErrorIX	{Неисправность DSP 2RAM}		% 0x0100
+	\def \deviceGlobalErrorX	{Неисправность чтения 2RAM}		% 0x0200
+	\def \deviceGlobalErrorXI	{Резерв}						% 0x0400
+	\def \deviceGlobalErrorXII	{Низкое напряжение выхода}		% 0x0800
+	\def \deviceGlobalErrorXIII	{Высокое напряжение выхода}		% 0x1000
+	\def \deviceGlobalErrorXIV	{Резерв}						% 0x2000
+	\def \deviceGlobalErrorXV	{Резерв}						% 0x4000
+	\def \deviceGlobalErrorXVI	{Резерв}						% 0x8000
+	% Предупреждения общие
+	\def \deviceGlobalWarnI 	{Установите часы}				% 0x0001
+	\def \deviceGlobalWarnII 	{Резерв}						% 0x0002
+	\def \deviceGlobalWarnIII 	{Резерв}						% 0x0004
+	\def \deviceGlobalWarnIV	{Резерв}						% 0x0008
+	\def \deviceGlobalWarnV		{Резерв}						% 0x0010
+	\def \deviceGlobalWarnVI	{Резерв}						% 0x0020
+	\def \deviceGlobalWarnVII	{Резерв}						% 0x0040
+	\def \deviceGlobalWarnVIII	{Резерв}						% 0x0080
+	\def \deviceGlobalWarnIX	{Резерв}						% 0x0100
+	\def \deviceGlobalWarnX		{Резерв}						% 0x0200
+	\def \deviceGlobalWarnXI	{Резерв}						% 0x0400
+	\def \deviceGlobalWarnXII	{Резерв}						% 0x0800
+	\def \deviceGlobalWarnXIII	{Резерв}						% 0x1000
+	\def \deviceGlobalWarnXIV	{Резерв}						% 0x2000
+	\def \deviceGlobalWarnXV	{Резерв}						% 0x4000
+	\def \deviceGlobalWarnXVI	{Резерв}						% 0x8000
+	% Неисправности приемника
+	\def \devicePrmErrorI 		{Нет блока БСК}					% 0x0001
+	\def \devicePrmErrorII 		{Неисправность версии БСК}		% 0x0002
+	\def \devicePrmErrorIII 	{Нет КЧ}						% 0x0004
+	\def \devicePrmErrorIV		{Резерв}						% 0x0008
+	\def \devicePrmErrorV		{Резерв}						% 0x0010
+	\def \devicePrmErrorVI		{Резерв}						% 0x0020
+	\def \devicePrmErrorVII		{Резерв}						% 0x0040
+	\def \devicePrmErrorVIII	{Резерв}						% 0x0080
+	\def \devicePrmErrorIX		{Неисправность записи БСК}		% 0x0100
+	\def \devicePrmErrorX		{Неисправность выключения КСК}	% 0x0200
+	\def \devicePrmErrorXI		{Неисправность включения КСК}	% 0x0400
+	\def \devicePrmErrorXII		{Неисправность контроля команд}	% 0x0800
+	\def \devicePrmErrorXIII	{Резерв}						% 0x1000
+	\def \devicePrmErrorXIV		{Резерв}						% 0x2000
+	\def \devicePrmErrorXV		{Резерв}						% 0x4000
+	\def \devicePrmErrorXVI		{Резерв}						% 0x8000
+	% Предупреждения приемника
+	\def \devicePrmWarnI 		{Снижение уровня ПРМ}			% 0x0001
+	\def \devicePrmWarnII 		{Ошибка работы ЦС}				% 0x0002
+	\def \devicePrmWarnIII 		{Вход RX ЦС пуст}				% 0x0004
+	\def \devicePrmWarnIV		{Резерв}						% 0x0008
+	\def \devicePrmWarnV		{Резерв}						% 0x0010
+	\def \devicePrmWarnVI		{Резерв}						% 0x0020
+	\def \devicePrmWarnVII		{Резерв}						% 0x0040
+	\def \devicePrmWarnVIII		{Резерв}						% 0x0080
+	\def \devicePrmWarnIX		{Резерв}						% 0x0100
+	\def \devicePrmWarnX		{Резерв}						% 0x0200
+	\def \devicePrmWarnXI		{Резерв}						% 0x0400
+	\def \devicePrmWarnXII		{Резерв}						% 0x0800
+	\def \devicePrmWarnXIII		{Резерв}						% 0x1000
+	\def \devicePrmWarnXIV		{Резерв}						% 0x2000
+	\def \devicePrmWarnXV		{Резерв}						% 0x4000
+	\def \devicePrmWarnXVI		{Резерв}						% 0x8000 
+	% Неисправности передатчика
+	\def \devicePrdErrorI 		{Нет блока БСК}					% 0x0001
+	\def \devicePrdErrorII 		{Неисправность версии БСК}		% 0x0002
+	\def \devicePrdErrorIII 	{Резерв}						% 0x0004
+	\def \devicePrdErrorIV		{Резерв}						% 0x0008
+	\def \devicePrdErrorV		{Резерв}						% 0x0010
+	\def \devicePrdErrorVI		{Резерв}						% 0x0020
+	\def \devicePrdErrorVII		{Резерв}						% 0x0040
+	\def \devicePrdErrorVIII	{Резерв}						% 0x0080
+	\def \devicePrdErrorIX		{Неисправность чтения команд}	% 0x0100
+	\def \devicePrdErrorX		{Неисправность выключения Теста}% 0x0200
+	\def \devicePrdErrorXI		{Неисправность включения Теста}	% 0x0400
+	\def \devicePrdErrorXII		{Неисправность входов команд}	% 0x0800
+	\def \devicePrdErrorXIII	{Резерв}						% 0x1000
+	\def \devicePrdErrorXIV		{Резерв}						% 0x2000
+	\def \devicePrdErrorXV		{Резерв}						% 0x4000
+	\def \devicePrdErrorXVI		{Резерв}						% 0x8000
+	% Предупреждения передатчика
+	\def \devicePrdWarnI 		{Резерв}						% 0x0001
+	\def \devicePrdWarnII 		{Ошибка работы ЦС}				% 0x0002
+	\def \devicePrdWarnIII 		{Вход RX ЦС пуст}				% 0x0004
+	\def \devicePrdWarnIV		{Резерв}						% 0x0008
+	\def \devicePrdWarnV		{Резерв}						% 0x0010
+	\def \devicePrdWarnVI		{Резерв}						% 0x0020
+	\def \devicePrdWarnVII		{Резерв}						% 0x0040
+	\def \devicePrdWarnVIII		{Резерв}						% 0x0080
+	\def \devicePrdWarnIX		{Резерв}						% 0x0100
+	\def \devicePrdWarnX		{Резерв}						% 0x0200
+	\def \devicePrdWarnXI		{Резерв}						% 0x0400
+	\def \devicePrdWarnXII		{Резерв}						% 0x0800
+	\def \devicePrdWarnXIII		{Резерв}						% 0x1000
+	\def \devicePrdWarnXIV		{Резерв}						% 0x2000
+	\def \devicePrdWarnXV		{Резерв}						% 0x4000
+	\def \devicePrdWarnXVI		{Резерв}						% 0x8000 
+\else \ifx \deviceCurrent \deviceR  
+	\def \deviceDecimal {ПБКМ.424325.001 РЭ3} 
+	\def \deviceTitle	{ПРИЕМОПЕРЕДАТЧИК СИГНАЛОВ РЕЛЕЙНОЙ ЗАЩИТЫ АВАНТ Р400}
+	\def \deviceOKP		{ОКП 42 3211}
+	\Commandfalse
+	\Defensetrue
+\else \ifx \deviceCurrent \deviceRM 
+	\def \deviceDecimal {ПБКМ.424325.001 РЭ3}
+	\def \deviceTitle	{ПРИЕМОПЕРЕДАТЧИК СИГНАЛОВ РЕЛЕЙНОЙ ЗАЩИТЫ АВАНТ Р400М}
+	\def \deviceOKP		{ОКП 42 3211}
+	\Commandfalse
+	\Defensetrue
+	% Неисправности общие
+	\def \deviceGlobalErrorI 	{Неисправность чтения FLASH}	% 0x0001
+	\def \deviceGlobalErrorII 	{Неисправность записи FLASH}	% 0x0002
+	\def \deviceGlobalErrorIII 	{Неисправность чтения PLIS}		% 0x0004
+	\def \deviceGlobalErrorIV	{Неисправность записи PLIS}		% 0x0008
+	\def \deviceGlobalErrorV	{Неисправность записи 2RAM}		% 0x0010
+	\def \deviceGlobalErrorVI	{АК-нет ответа}					% 0x0020
+	\def \deviceGlobalErrorVII	{АК-снижение запаса}			% 0x0040
+	\def \deviceGlobalErrorVIII	{Помеха в линии}				% 0x0080
+	\def \deviceGlobalErrorIX	{Неисправность DSP 2RAM}		% 0x0100
+	\def \deviceGlobalErrorX	{Неисправность чтения 2RAM}		% 0x0200
+	\def \deviceGlobalErrorXI	{Ток покоя}						% 0x0400
+	\def \deviceGlobalErrorXII	{Низкое напряжение выхода}		% 0x0800
+	\def \deviceGlobalErrorXIII	{Высокое напряжение выхода}		% 0x1000
+	\def \deviceGlobalErrorXIV	{Неисправность МкУМ}			% 0x2000
+	\def \deviceGlobalErrorXV	{ВЧ тракт восстановлен}			% 0x4000
+	\def \deviceGlobalErrorXVI	{Резерв}						% 0x8000
+	% Предупреждения общие
+	\def \deviceGlobalWarnI 	{Установите часы}				% 0x0001
+	\def \deviceGlobalWarnII 	{Резерв}						% 0x0002
+	\def \deviceGlobalWarnIII 	{Резерв}						% 0x0004
+	\def \deviceGlobalWarnIV	{Резерв}						% 0x0008
+	\def \deviceGlobalWarnV		{Резерв}						% 0x0010
+	\def \deviceGlobalWarnVI	{Резерв}						% 0x0020
+	\def \deviceGlobalWarnVII	{Резерв}						% 0x0040
+	\def \deviceGlobalWarnVIII	{Резерв}						% 0x0080
+	\def \deviceGlobalWarnIX	{Резерв}						% 0x0100
+	\def \deviceGlobalWarnX		{Резерв}						% 0x0200
+	\def \deviceGlobalWarnXI	{Резерв}						% 0x0400
+	\def \deviceGlobalWarnXII	{Резерв}						% 0x0800
+	\def \deviceGlobalWarnXIII	{Резерв}						% 0x1000
+	\def \deviceGlobalWarnXIV	{Резерв}						% 0x2000
+	\def \deviceGlobalWarnXV	{Резерв}						% 0x4000
+	\def \deviceGlobalWarnXVI	{Резерв}						% 0x8000
+	% Неисправности защиты
+	\def \deviceDefenseErrorI 	{Нет блока БСЗ}					% 0x0001
+	\def \deviceDefenseErrorII 	{Неисправность версии БСЗ}		% 0x0002
+	\def \deviceDefenseErrorIII {Неисправность переключателей}	% 0x0004
+	\def \deviceDefenseErrorIV	{Резерв}						% 0x0008
+	\def \deviceDefenseErrorV	{АК-нет ответа}					% 0x0010
+	\def \deviceDefenseErrorVI	{Резерв}						% 0x0020
+	\def \deviceDefenseErrorVII	{Неисправность удаленного ДФЗ}	% 0x0040
+	\def \deviceDefenseErrorVIII{Неисправность удаленного ВЫХ}	% 0x0080
+	\def \deviceDefenseErrorIX	{Неисправность входа ПУСК}		% 0x0100
+	\def \deviceDefenseErrorX	{Неисправность входа СТОП}		% 0x0200
+	\def \deviceDefenseErrorXI	{Удаленный без ответа}			% 0x0400
+	\def \deviceDefenseErrorXII	{Неисправность цепи ВЫХ}		% 0x0800
+	\def \deviceDefenseErrorXIII{Удаленный обнаружил помеху}	% 0x1000
+	\def \deviceDefenseErrorXIV	{Неисправность записи ВЫХ}		% 0x2000
+	\def \deviceDefenseErrorXV	{Длительная помеха}				% 0x4000
+	\def \deviceDefenseErrorXVI	{Неисправность ДФЗ}				% 0x8000
+	% Предупреждения защиты
+	\def \deviceDefenseWarnI 	{АК-снижение запаса}			% 0x0001
+	\def \deviceDefenseWarnII 	{Нет сигнала МАН}				% 0x0002
+	\def \deviceDefenseWarnIII 	{Порог по помехе}				% 0x0004
+	\def \deviceDefenseWarnIV	{Автоконтроль}					% 0x0008
+	\def \deviceDefenseWarnV	{Резерв}						% 0x0010
+	\def \deviceDefenseWarnVI	{Резерв}						% 0x0020
+	\def \deviceDefenseWarnVII	{Резерв}						% 0x0040
+	\def \deviceDefenseWarnVIII	{Резерв}						% 0x0080
+	\def \deviceDefenseWarnIX	{Резерв}						% 0x0100
+	\def \deviceDefenseWarnX	{Резерв}						% 0x0200
+	\def \deviceDefenseWarnXI	{Резерв}						% 0x0400
+	\def \deviceDefenseWarnXII	{Резерв}						% 0x0800
+	\def \deviceDefenseWarnXIII	{Резерв}						% 0x1000
+	\def \deviceDefenseWarnXIV	{Резерв}						% 0x2000
+	\def \deviceDefenseWarnXV	{Резерв}						% 0x4000
+	\def \deviceDefenseWarnXVI	{Резерв}						% 0x8000 
+\else \ifx \deviceCurrent \deviceRZSK 
+	\def \deviceDecimal {ПБКМ.424325.004 РЭ3}
+	\def \deviceTitle	{ПРИЕМОПЕРЕДАТЧИК СИГНАЛОВ И КОМАНД РЕЛЕЙНОЙ ЗАЩИТЫ АВАНТ РЗСК} 
+	\def \deviceOKP		{ОКП 42 3211}
+	\Commandtrue
+	\Defensetrue
+	% Неисправности общие
+	\def \deviceGlobalErrorI 	{Неисправность чтения FLASH}	% 0x0001
+	\def \deviceGlobalErrorII 	{Неисправность записи FLASH}	% 0x0002
+	\def \deviceGlobalErrorIII 	{Неисправность чтения PLIS}		% 0x0004
+	\def \deviceGlobalErrorIV	{Неисправность записи PLIS}		% 0x0008
+	\def \deviceGlobalErrorV	{Неисправность записи 2RAM}		% 0x0010
+	\def \deviceGlobalErrorVI	{Резерв}						% 0x0020
+	\def \deviceGlobalErrorVII	{Резерв}						% 0x0040
+	\def \deviceGlobalErrorVIII	{Резерв}						% 0x0080
+	\def \deviceGlobalErrorIX	{Неисправность DSP 2RAM}		% 0x0100
+	\def \deviceGlobalErrorX	{Неисправность чтения 2RAM}		% 0x0200
+	\def \deviceGlobalErrorXI	{Резерв}						% 0x0400
+	\def \deviceGlobalErrorXII	{Низкое напряжение выхода}		% 0x0800
+	\def \deviceGlobalErrorXIII	{Высокое напряжение выхода}		% 0x1000
+	\def \deviceGlobalErrorXIV	{Резерв}						% 0x2000
+	\def \deviceGlobalErrorXV	{Резерв}						% 0x4000
+	\def \deviceGlobalErrorXVI	{Резерв}						% 0x8000
+	% Предупреждения общие
+	\def \deviceGlobalWarnI 	{Резерв}						% 0x0001
+	\def \deviceGlobalWarnII 	{Резерв}						% 0x0002
+	\def \deviceGlobalWarnIII 	{Резерв}						% 0x0004
+	\def \deviceGlobalWarnIV	{Резерв}						% 0x0008
+	\def \deviceGlobalWarnV		{Резерв}						% 0x0010
+	\def \deviceGlobalWarnVI	{Резерв}						% 0x0020
+	\def \deviceGlobalWarnVII	{Резерв}						% 0x0040
+	\def \deviceGlobalWarnVIII	{Резерв}						% 0x0080
+	\def \deviceGlobalWarnIX	{Резерв}						% 0x0100
+	\def \deviceGlobalWarnX		{Резерв}						% 0x0200
+	\def \deviceGlobalWarnXI	{Установите часы}				% 0x0400
+	\def \deviceGlobalWarnXII	{Резерв}						% 0x0800
+	\def \deviceGlobalWarnXIII	{Резерв}						% 0x1000
+	\def \deviceGlobalWarnXIV	{Резерв}						% 0x2000
+	\def \deviceGlobalWarnXV	{Резерв}						% 0x4000
+	\def \deviceGlobalWarnXVI	{Резерв}						% 0x8000
+	% Неисправности защиты
+	\def \deviceDefenseErrorI 	{Нет блока БСЗ}					% 0x0001
+	\def \deviceDefenseErrorII 	{Неисправность версии БСЗ}		% 0x0002
+	\def \deviceDefenseErrorIII {Неисправность переключателей}	% 0x0004
+	\def \deviceDefenseErrorIV	{Резерв}						% 0x0008
+	\def \deviceDefenseErrorV	{Резерв}						% 0x0010
+	\def \deviceDefenseErrorVI	{Резерв}						% 0x0020
+	\def \deviceDefenseErrorVII	{Резерв}						% 0x0040
+	\def \deviceDefenseErrorVIII{Резерв}						% 0x0080
+	\def \deviceDefenseErrorIX	{Неисправность входа ПУСК}		% 0x0100
+	\def \deviceDefenseErrorX	{Неисправность входа СТОП}		% 0x0200
+	\def \deviceDefenseErrorXI	{Резерв}						% 0x0400
+	\def \deviceDefenseErrorXII	{Неисправность цепи ВЫХ}		% 0x0800
+	\def \deviceDefenseErrorXIII{Резерв}						% 0x1000
+	\def \deviceDefenseErrorXIV	{Неисправность записи ВЫХ}		% 0x2000
+	\def \deviceDefenseErrorXV	{Нет сигнала РЗ}				% 0x4000
+	\def \deviceDefenseErrorXVI	{Удаленный неисправен}			% 0x8000
+	% Предупреждения защиты
+	\def \deviceDefenseWarnI 	{Низкий уровень РЗ}				% 0x0001
+	\def \deviceDefenseWarnII 	{Нет сигнала МАН}				% 0x0002
+	\def \deviceDefenseWarnIII 	{Резерв}						% 0x0004
+	\def \deviceDefenseWarnIV	{Резерв}						% 0x0008
+	\def \deviceDefenseWarnV	{Резерв}						% 0x0010
+	\def \deviceDefenseWarnVI	{Резерв}						% 0x0020
+	\def \deviceDefenseWarnVII	{Резерв}						% 0x0040
+	\def \deviceDefenseWarnVIII	{Резерв}						% 0x0080
+	\def \deviceDefenseWarnIX	{Резерв}						% 0x0100
+	\def \deviceDefenseWarnX	{Резерв}						% 0x0200
+	\def \deviceDefenseWarnXI	{Резерв}						% 0x0400
+	\def \deviceDefenseWarnXII	{Резерв}						% 0x0800
+	\def \deviceDefenseWarnXIII	{Резерв}						% 0x1000
+	\def \deviceDefenseWarnXIV	{Резерв}						% 0x2000
+	\def \deviceDefenseWarnXV	{Резерв}						% 0x4000
+	\def \deviceDefenseWarnXVI	{Резерв}						% 0x8000 
+	% Неисправности приемника
+	\def \devicePrmErrorI 		{Нет блока БСК}					% 0x0001
+	\def \devicePrmErrorII 		{Неисправность версии БСК}		% 0x0002
+	\def \devicePrmErrorIII 	{Нет КС}						% 0x0004
+	\def \devicePrmErrorIV		{Резерв}						% 0x0008
+	\def \devicePrmErrorV		{Резерв}						% 0x0010
+	\def \devicePrmErrorVI		{Резерв}						% 0x0020
+	\def \devicePrmErrorVII		{Резерв}						% 0x0040
+	\def \devicePrmErrorVIII	{Резерв}						% 0x0080
+	\def \devicePrmErrorIX		{Неисправность записи БСК}		% 0x0100
+	\def \devicePrmErrorX		{Неисправность выключения команд}% 0x0200
+	\def \devicePrmErrorXI		{Неисправность включения команд}% 0x0400
+	\def \devicePrmErrorXII		{Неисправность контроля команд}	% 0x0800
+	\def \devicePrmErrorXIII	{Резерв}						% 0x1000
+	\def \devicePrmErrorXIV		{Резерв}						% 0x2000
+	\def \devicePrmErrorXV		{Резерв}						% 0x4000
+	\def \devicePrmErrorXVI		{Резерв}						% 0x8000
+	% Предупреждения приемника
+	\def \devicePrmWarnI 		{Снижение уровня ПРМ}			% 0x0001
+	\def \devicePrmWarnII 		{Резерв}						% 0x0002
+	\def \devicePrmWarnIII 		{Резерв}						% 0x0004
+	\def \devicePrmWarnIV		{Резерв}						% 0x0008
+	\def \devicePrmWarnV		{Резерв}						% 0x0010
+	\def \devicePrmWarnVI		{Резерв}						% 0x0020
+	\def \devicePrmWarnVII		{Резерв}						% 0x0040
+	\def \devicePrmWarnVIII		{Резерв}						% 0x0080
+	\def \devicePrmWarnIX		{Резерв}						% 0x0100
+	\def \devicePrmWarnX		{Резерв}						% 0x0200
+	\def \devicePrmWarnXI		{Резерв}						% 0x0400
+	\def \devicePrmWarnXII		{Резерв}						% 0x0800
+	\def \devicePrmWarnXIII		{Резерв}						% 0x1000
+	\def \devicePrmWarnXIV		{Резерв}						% 0x2000
+	\def \devicePrmWarnXV		{Резерв}						% 0x4000
+	\def \devicePrmWarnXVI		{Резерв}						% 0x8000 
+	% Неисправности передатчика
+	\def \devicePrdErrorI 		{Нет блока БСК}					% 0x0001
+	\def \devicePrdErrorII 		{Неисправность версии БСК}		% 0x0002
+	\def \devicePrdErrorIII 	{Резерв}						% 0x0004
+	\def \devicePrdErrorIV		{Резерв}						% 0x0008
+	\def \devicePrdErrorV		{Резерв}						% 0x0010
+	\def \devicePrdErrorVI		{Резерв}						% 0x0020
+	\def \devicePrdErrorVII		{Резерв}						% 0x0040
+	\def \devicePrdErrorVIII	{Резерв}						% 0x0080
+	\def \devicePrdErrorIX		{Неисправность чтения команд}	% 0x0100
+	\def \devicePrdErrorX		{Неисправность выключения Теста}% 0x0200
+	\def \devicePrdErrorXI		{Неисправность включения Теста}	% 0x0400
+	\def \devicePrdErrorXII		{Неисправность входов команд}	% 0x0800
+	\def \devicePrdErrorXIII	{Резерв}						% 0x1000
+	\def \devicePrdErrorXIV		{Резерв}						% 0x2000
+	\def \devicePrdErrorXV		{Резерв}						% 0x4000
+	\def \devicePrdErrorXVI		{Резерв}						% 0x8000
+	% Предупреждения передатчика
+	\def \devicePrdWarnI 		{Резерв}						% 0x0001
+	\def \devicePrdWarnII 		{Ошибка работы ЦС}				% 0x0002
+	\def \devicePrdWarnIII 		{Вход RX ЦС пуст}				% 0x0004
+	\def \devicePrdWarnIV		{Резерв}						% 0x0008
+	\def \devicePrdWarnV		{Резерв}						% 0x0010
+	\def \devicePrdWarnVI		{Резерв}						% 0x0020
+	\def \devicePrdWarnVII		{Резерв}						% 0x0040
+	\def \devicePrdWarnVIII		{Резерв}						% 0x0080
+	\def \devicePrdWarnIX		{Резерв}						% 0x0100
+	\def \devicePrdWarnX		{Резерв}						% 0x0200
+	\def \devicePrdWarnXI		{Резерв}						% 0x0400
+	\def \devicePrdWarnXII		{Резерв}						% 0x0800
+	\def \devicePrdWarnXIII		{Резерв}						% 0x1000
+	\def \devicePrdWarnXIV		{Резерв}						% 0x2000
+	\def \devicePrdWarnXV		{Резерв}						% 0x4000
+	\def \devicePrdWarnXVI		{Резерв}						% 0x8000 	
+\else 
+	\def \deviceDecimal	{\textcolor{red}{ОШИБКА ДЕЦИМАЛЬНОГО НОМЕРА!}}
+	\def \deviceTitle	{\textcolor{red}{ОШИБКА ТИТУЛА!}}
+	\def \deviceOKP		{\textcolor{red}{ОШИБКА ОКП!}}
+\fi \fi \fi \fi
